@@ -1,28 +1,34 @@
 <template>
-  <div id="app">
-    <ServiceList/>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-navigation-drawer v-model="drawer" app clipped>
+      <DrawerList/>
+    </v-navigation-drawer>
+
+    <v-app-bar app clipped-left>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title>Univ UC</v-toolbar-title>
+    </v-app-bar>
+
+    <v-content>
+      <router-view/>
+    </v-content>
+
+  </v-app>
 </template>
 
 <script>
-import NavigationBar from './components/home/NavigationBar';
+import DrawerList from './components/home/DrawerList';
 
 export default {
   name: 'App',
-  components: {
-    ServiceList: NavigationBar,
-  }
-}
-</script>
+  components: {DrawerList},
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  data: () => ({
+    drawer: null,
+  }),
+
+  created () {
+    this.$vuetify.theme.dark = true
+  },
+};
+</script>
