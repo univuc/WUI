@@ -23,22 +23,27 @@
 <script>
 import DrawerList from './components/home/DrawerList';
 
+function setDarkInternal(context, dark) {
+  context.$vuetify.theme.dark = dark;
+  window.document.getElementById('doc').style.backgroundColor = dark ? '#121212' : '#FFFFFF';
+}
+
 export default {
   name: 'App',
   components: {DrawerList},
 
   data: () => ({
-    drawer: null,
+    drawer: true,
     isDark: true,
   }),
 
   created() {
-    this.$vuetify.theme.dark = true;
+    setDarkInternal(this, true);
   },
 
   methods: {
     setDark(dark) {
-      this.$vuetify.theme.dark = dark;
+      setDarkInternal(this, dark);
     }
   },
 };
