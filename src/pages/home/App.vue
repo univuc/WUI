@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import DrawerList from './components/home/DrawerList';
+import DrawerList from './components/DrawerList';
 
 function setDarkInternal(context, dark) {
   context.$vuetify.theme.dark = dark;
