@@ -1,5 +1,5 @@
 <template>
-  <v-app :dark="isDark">
+  <v-app>
 
     <v-navigation-drawer v-model="drawer" app clipped>
       <DrawerList/>
@@ -33,8 +33,7 @@ export default {
   components: {DrawerList},
 
   data: () => ({
-    drawer: true,
-    isDark: true,
+    drawer: null,
   }),
 
   created() {
