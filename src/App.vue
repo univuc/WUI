@@ -1,6 +1,5 @@
 <template>
   <v-app>
-
     <v-navigation-drawer v-model="drawer" app clipped>
       <DrawerList/>
       <v-container fluid>
@@ -35,15 +34,14 @@ export default {
   data: () => ({
     drawer: null,
   }),
-
-  created() {
-    setDarkInternal(this, true);
-  },
-
   methods: {
     setDark(dark) {
       setDarkInternal(this, dark);
     }
+  },
+
+  created() {
+    setDarkInternal(this, true);
   },
 };
 </script>

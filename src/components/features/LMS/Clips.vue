@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="display-1 text--primary">Clips</div>
-        <v-card v-for="(clip, index) in clips" :key="clip.id"
+        <v-card v-for="clip in clips" :key="clip.id"
                 class="my-3" raised ripple :loading="clip.loading">
 
             <!-- Texts -->
@@ -13,8 +13,8 @@
 
             <!-- Action -->
             <v-card-actions>
-                <v-btn text color="orange accent-4" @click="onClickAttend(index)">출석처리</v-btn>
-                <v-btn text color="grey accent-4" @click="onClickDetails(index)">자세히</v-btn>
+                <v-btn text color="orange accent-4" @click="onClickAttend(clip)">출석처리</v-btn>
+                <v-btn text color="grey accent-4" @click="onClickDetails(clip)">자세히</v-btn>
             </v-card-actions>
 
         </v-card>
@@ -48,7 +48,7 @@
                     due: '2020년 5월 1일 8시 30분 ~ 2020년 5월 8일 19시 30분'
                 },
                 {
-                    id: 1234,
+                    id: 4576,
                     course: '메롱',
                     title: '이히히히',
                     runningTime: 1400,
@@ -56,32 +56,35 @@
                 },
             ],
         }),
-
         methods: {
-            onClickAttend: this._clearClip,
+            async onClickAttend(clip) {
+                await this._clearClip(clip);
+            },
 
-            async _clearClip(clipIndex) {
-                this._setClipLoading(clipIndex, true);
+            async _clearClip(clip) {
+                this._setClipLoading(clip, true);
 
                 await new Promise((resolve) => {setTimeout(() => {resolve();}, 1500);});
 
-                this._setClipLoading(clipIndex, false);
+                this._setClipLoading(clip, false);
 
-                this._removeClip(clipIndex);
+                this._removeClip(clip);
             },
 
-            _setClipLoading(clipIndex, loadingOrNot) {
-                updateInternal(this.clips[clipIndex], 'loading', loadingOrNot);
+            _setClipLoading(clip, loadingOrNot) {
+                updateInternal(clip, 'loading', loadingOrNot);
             },
 
-            _removeClip(clipIndex) {
-                this.clips.splice(clipIndex, 1);
+            _removeClip(clip) {
+                this.clips = this.clips.filter((c) => c.id !== clip.id);
             },
 
-            onClickDetails: this._showClipInfo,
+            onClickDetails(clip) {
+                this._showClipInfo(clip);
+            },
 
-            _showClipInfo(clipIndex) {
-                alert(this.clips[clipIndex]);
+            _showClipInfo(clip) {
+                alert(clip);
             },
         },
     };
