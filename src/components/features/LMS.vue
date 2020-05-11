@@ -1,6 +1,7 @@
 <template>
     <v-container fluid>
 
+        <!-- Clips -->
         <v-row justify="center">
             <v-col cols="12" lg="4">
                 <div class="display-1 text--primary">Clips</div>
@@ -8,7 +9,8 @@
                         v-for="clip in clips"
                         :key="clip.id"
                         class="my-3"
-                        tile
+                        raised
+                        ripple
                 >
                     <v-card-text>
                         {{ clip.course }}
@@ -22,6 +24,7 @@
             </v-col>
         </v-row>
 
+        <!-- Assignments -->
         <v-row justify="center">
             <v-col cols="12" lg="4">
                 <div class="display-1 text--primary">Assignments</div>
@@ -29,7 +32,8 @@
                         v-for="assignment in assignments"
                         :key="assignment.id"
                         class="my-3"
-                        tile
+                        raised
+                        ripple
                 >
                     <v-card-text>
                         {{ assignment.course }}
@@ -50,7 +54,7 @@
         data: () => ({
             clips: [
                 {
-                    id: 1234,
+                    id: 1,
                     course: '비판적사고력연습',
                     title: '8주차 비대면 수업',
                     runningTime: 1400,
