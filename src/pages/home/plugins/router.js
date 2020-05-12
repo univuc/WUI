@@ -1,8 +1,8 @@
 import VueRouter from 'vue-router';
-import Front from '../features/front/Main';
-import AICRO from '../features/AICRO/Main';
-import LMS from '../features/LMS/Main';
-import SNL from '../features/SNL/Main';
+import Front from '../features/front/Front';
+import AICRO from '../features/AICRO/AICRO';
+import LMS from '../features/LMS/LMS';
+import SNL from '../features/SNL/SNL';
 import Vue from 'vue';
 
 Vue.use(VueRouter);
@@ -26,7 +26,7 @@ function addGuard(router) {
             if (isLoggedIn()) {
                 next();
             } else {
-                window.location.href = '/auth';
+                window.location.href = '/auth/sign-in';
             }
         } else {
             next();
